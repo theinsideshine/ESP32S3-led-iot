@@ -52,7 +52,7 @@ void CLed::set_color(uint8_t color_id) {
 }
 
 // Hace parpadear el LED
-void CLed::blink(uint8_t n_blink, uint8_t t_blink) {
+void CLed::blink(uint8_t n_blink, unsigned long t_blink) { // Cambiado a unsigned long
     for (int i = 0; i < n_blink; i++) {
         on();
         delay(t_blink);
@@ -60,4 +60,5 @@ void CLed::blink(uint8_t n_blink, uint8_t t_blink) {
         delay(t_blink);
     }
 }
+
 

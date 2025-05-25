@@ -13,7 +13,7 @@ public:
     void on();                          // Enciende el LED con el color actual
     void off();                         // Apaga el LED
     void set_color(uint8_t color_id);    // Configura el color usando un ID_
-    void blink(uint8_t n_blink, uint8_t t_blink); // Hace parpadear el LED
+    void blink(uint8_t n_blink, unsigned long t_blink);  // Hace parpadear el LED
 
 private:
     Adafruit_NeoPixel leds;
