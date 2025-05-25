@@ -76,6 +76,19 @@ BLYNK_WRITE(V3) {
   }
 }
 
+BLYNK_WRITE(V4) {
+  if (!experimentoActivo) {
+    Config.set_log_level(param.asInt());
+  }
+}
+
+BLYNK_WRITE(V5) {
+  if (!experimentoActivo) {
+    Config.set_st_mode(param.asInt());
+  }
+}
+
+
 void run_demo_serial_plotter(void) {
   uint16_t raw, filtered, danger_point = 2500;
   uint8_t state = 0;
@@ -117,6 +130,8 @@ void setup() {
   Led.on();
   delay(1000);
   Led.off();
+  Serial.print("Log level inicial: ");
+  Serial.println(Config.get_log_level());
 
   Log.msg(F("Sistema inicializado"));
 }
