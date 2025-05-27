@@ -47,6 +47,7 @@ class CIotConfig {
     void set_st_mode(uint32_t);
 
     void send_test_finish();
+    void send_demo_finish();
 
   private:
     uint32_t log_level;

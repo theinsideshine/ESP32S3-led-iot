@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-#define FIRMWARE_VERSION                "led-iot-esp32-S3-V0.03" 
+#define FIRMWARE_VERSION                "led-iot-esp32-S3-V0.04" 
 #define FECHA_VERSION                   "MAYO-2025"
 
 //#define ST_DEBUG                         1

@@ -81,6 +81,7 @@ void CIotConfig::set_log_level(uint32_t val) {
  * Estos deberían ser booleano !!!!! 
  */
 uint32_t CIotConfig::get_st_test() { return st_test; }
+
 void CIotConfig::set_st_test(uint32_t val) {
     st_test = val;
     EEPROM.put(EEPROM_ADDRESS_ST_TEST, val);
@@ -88,6 +89,7 @@ void CIotConfig::set_st_test(uint32_t val) {
 }
 
 uint32_t CIotConfig::get_st_mode() { return st_mode; }
+
 void CIotConfig::set_st_mode(uint32_t val) {
     st_mode = val;
     EEPROM.put(EEPROM_ADDRESS_ST_MODE, val);
@@ -101,5 +103,12 @@ void CIotConfig::send_st_test_to_blynk(uint32_t value) {
 void CIotConfig::send_test_finish() {
     StaticJsonDocument<256> doc;
     doc["st_test"] = get_st_test();
+    serializeJsonPretty(doc, Serial);
+}
+
+
+void CIotConfig::send_demo_finish() {
+    StaticJsonDocument<256> doc;
+    doc["st_demo"] = get_st_mode();
     serializeJsonPretty(doc, Serial);
 }

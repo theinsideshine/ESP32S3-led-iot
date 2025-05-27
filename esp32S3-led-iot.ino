@@ -100,6 +100,8 @@ void run_demo_serial_plotter(void) {
     Log.ctrl(raw, filtered, state, danger_point);
   }
   Config.set_st_mode(ST_MODE_TEST);
+  Config.send_demo_finish();
+   Blynk.virtualWrite(V5, 0);
 }
 
 void setup() {
