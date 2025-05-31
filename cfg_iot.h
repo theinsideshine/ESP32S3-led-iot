@@ -49,7 +49,12 @@ class CIotConfig {
     void send_test_finish();
     void send_demo_finish();
 
+    void print_all();
+
   private:
+    
+    void send_param_update(const char* key, uint32_t value);
+
     uint32_t log_level;
     uint32_t led_blink_time;
     uint32_t led_blink_quantity;

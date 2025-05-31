@@ -49,32 +49,49 @@ void CIotConfig::init() {
     }
 }
 
-uint32_t CIotConfig::get_led_blink_time() { return led_blink_time; }
+uint32_t CIotConfig::get_led_blink_time() {
+     return led_blink_time;
+}
+
 void CIotConfig::set_led_blink_time(uint32_t val) {
     led_blink_time = val;
     EEPROM.put(EEPROM_ADDRESS_LED_BLINK_TIME, val);
-    EEPROM.commit();
+    EEPROM.commit();    
+    send_param_update("led_blink_time", val);
 }
 
-uint32_t CIotConfig::get_led_blink_quantity() { return led_blink_quantity; }
+uint32_t CIotConfig::get_led_blink_quantity() {
+     return led_blink_quantity;
+}
+
 void CIotConfig::set_led_blink_quantity(uint32_t val) {
     led_blink_quantity = val;
     EEPROM.put(EEPROM_ADDRESS_LED_BLINK_QUANTITY, val);
     EEPROM.commit();
+    send_param_update("led_blink_quantity", val);
+}
+    
+
+uint32_t CIotConfig::get_led_color() {
+     return led_color; 
 }
 
-uint32_t CIotConfig::get_led_color() { return led_color; }
 void CIotConfig::set_led_color(uint32_t val) {
     led_color = val;
     EEPROM.put(EEPROM_ADDRESS_LED_COLOR, val);
     EEPROM.commit();
+    send_param_update("led_color", val);
 }
 
-uint32_t CIotConfig::get_log_level() { return log_level; }
+uint32_t CIotConfig::get_log_level() {
+     return log_level;
+}
+
 void CIotConfig::set_log_level(uint32_t val) {
     log_level = val;
     EEPROM.put(EEPROM_ADDRESS_LOG_LEVEL, val);
     EEPROM.commit();
+    send_param_update("log_level", val);   
 }
 
 /*
@@ -112,3 +129,34 @@ void CIotConfig::send_demo_finish() {
     doc["st_demo"] = get_st_mode();
     serializeJsonPretty(doc, Serial);
 }
+
+void CIotConfig::print_all() {
+    Serial.println("=== CONFIGURACIÓN ACTUAL ===");
+    Serial.print("LED Blink Time: ");
+    Serial.println(get_led_blink_time());
+
+    Serial.print("LED Blink Quantity: ");
+    Serial.println(get_led_blink_quantity());
+
+    Serial.print("LED Color: ");
+    Serial.println(get_led_color());
+
+    Serial.print("Log Level: ");
+    Serial.println(get_log_level());
+
+    Serial.print("st_test: ");
+    Serial.println(get_st_test());
+
+    Serial.print("st_mode: ");
+    Serial.println(get_st_mode());
+    Serial.println("============================");
+}
+
+void CIotConfig::send_param_update(const char* key, uint32_t value) {
+    StaticJsonDocument<128> doc;
+    doc[key] = value;
+    serializeJsonPretty(doc, Serial);
+    Serial.println(); // para que termine bien la línea
+}
+
+

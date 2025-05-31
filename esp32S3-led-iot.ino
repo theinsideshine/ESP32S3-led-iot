@@ -50,6 +50,8 @@ static void end_experiment(void) {
   Blynk.virtualWrite(V0, 0);
 }
 
+
+
 // --- BLYNK ---
 BLYNK_WRITE(V0) {
   if (!experimentoActivo) {
@@ -87,6 +89,30 @@ BLYNK_WRITE(V5) {
     Config.set_st_mode(param.asInt());
   }
 }
+
+// Comando para mostrar parametros por puerto serie
+
+BLYNK_WRITE(V6) {
+  if (param.asInt() == 1) {
+    Config.print_all();
+  }
+}
+
+
+void sync_app_with_device() {
+  Blynk.virtualWrite(V0, Config.get_st_test());
+  Blynk.virtualWrite(V1, Config.get_led_color());
+  Blynk.virtualWrite(V2, Config.get_led_blink_time() / 1000);
+  Blynk.virtualWrite(V3, Config.get_led_blink_quantity());
+  Blynk.virtualWrite(V4, Config.get_log_level());
+  Blynk.virtualWrite(V5, Config.get_st_mode());
+}
+
+BLYNK_CONNECTED() {
+  sync_app_with_device();  // Enviar valores actuales al panel
+}
+
+//Arquitectura 
 
 
 void run_demo_serial_plotter(void) {
