@@ -15,7 +15,7 @@ This project implements a non-blocking architecture for the ESP32-S3DEVKITC-1_V1
 
 ## Blynk Mobile UI – "Inside IoT"
 
-<img src="blynk-led-iot.jpg" alt="Blynk App Screenshot" width="300">
+<img src="images/blynk-led-iot.jpg" alt="Blynk App Screenshot" width="300">
 
 | Widget                | Type            | Virtual Pin | Range / Values              | Description                                 |
 |-----------------------|------------------|--------------|------------------------------|---------------------------------------------|
