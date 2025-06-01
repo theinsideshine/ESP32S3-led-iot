@@ -13,7 +13,7 @@
 */
 
 #define BLYNK_TEMPLATE_ID "TMPL2HAGgrm8D"
-#define BLYNK_TEMPLATE_NAME "Control RGB ESP32"
+#define BLYNK_TEMPLATE_NAME "Inside IoT"
 #define BLYNK_AUTH_TOKEN "P7gOcYiNkVWtpIP4za5LeRr3vZ20UDwU"
 
 #include <BlynkSimpleEsp32.h>
@@ -106,6 +106,8 @@ void sync_app_with_device() {
   Blynk.virtualWrite(V3, Config.get_led_blink_quantity());
   Blynk.virtualWrite(V4, Config.get_log_level());
   Blynk.virtualWrite(V5, Config.get_st_mode());
+   //V6 se usa para comando
+  Blynk.virtualWrite(V7, FIRMWARE_VERSION);
 }
 
 BLYNK_CONNECTED() {
@@ -136,14 +138,7 @@ void setup() {
   Config.init();
   Log.init(Config.get_log_level());
 
-  Serial.println("Init Serial");
-
-  /*
-      Para activar la visualisacion  enviar por serie {log_level:'1'}
-  */
-
-  Log.msg(F("%s "), FIRMWARE_VERSION);
-  Log.msg(F("%s "), FECHA_VERSION);
+  Serial.println("Init Serial"); 
  
 
   // --- CONEXIÓN BLYNK (reemplaza WiFi.begin + server web) ---
@@ -161,7 +156,15 @@ void setup() {
   Serial.print("Log level inicial: ");
   Serial.println(Config.get_log_level());
 
+   /*
+      Para activar la visualisacion  enviar por serie {log_level:'1'}
+  */
+  
   Log.msg(F("Sistema inicializado"));
+  Serial.println("==================================");
+  Serial.printf("Proyecto:           %s\n", PROYECT_NAME);
+  Serial.printf("Firmware versión:   %s\n", FIRMWARE_VERSION); ;
+  Serial.println("==================================");
 }
 
 void loop() {
