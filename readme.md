@@ -66,7 +66,8 @@ References:
    #define BLYNK_AUTH_TOKEN    "..."
 
 ##Video
-   [![Demo](image/video.png)](https://youtu.be/48syBt5Vqos?si=S1nBQaleQr-CLtpe)
+
+   [![Demo](images/video.png)](https://youtu.be/48syBt5Vqos?si=kBdLWzYhDfljPyTG)
 
 
 
